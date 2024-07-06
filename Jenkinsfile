@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+
+    environment {
+        GO122MODULE = 'on'
+        GOPATH = "${env.WORKSPACE}/go"
+        PATH = "${env.PATH}:${env.GOPATH}/bin"
+    }
+    options {
+        // This is required if you want to clean before build
+        skipDefaultCheckout(true)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Hello ${params.branchName}"
+                git url: 'https://github.com/kayaratvinod/golang.git', branch: "${params.branchName}"
+            }
+        }
+        stage('Initialize golang') {
+            steps {
+                sh 'go mod init golang'
+            }
+        }
+        stage('Code Analysis') {
+            parallel {
+                stage('Vet') {
+                    steps {
+                        sh 'go vet ./...'
+                    }
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'go mod tidy'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'go build -o hello-world'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'mv hello-world.go /tmp'
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
