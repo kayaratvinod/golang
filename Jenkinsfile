@@ -38,9 +38,14 @@ pipeline {
                 sh 'go mod tidy'
             }
         }
+	stage('Build') {
+            steps {
+                sh 'go build -o hello-world'
+            }
+        }
         stage('Package') {
             steps {
-                echo "Packaging" 
+                sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
             }
         }
     }
