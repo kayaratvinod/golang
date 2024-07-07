@@ -5,7 +5,7 @@ pipeline {
         GO122MODULE = 'on'
         GOPATH = "${env.WORKSPACE}/go"
         PATH = "${env.PATH}:${env.GOPATH}/bin"
-	BRANCHNAME = ${env.BRANCH_NAME}
+	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     options {
         // This is required if you want to clean before build
