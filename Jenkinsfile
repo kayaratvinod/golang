@@ -12,6 +12,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                echo "Hello ${params.branchName}"
+                git url: 'https://github.com/kayaratvinod/golang.git'
+            }
+        }
         stage('Package') {
             steps {
                 echo "Packaging" 
