@@ -4,18 +4,8 @@ pipeline {
     stages {
         stage('upload') {
            steps {
-              script { 
-                 def server = Artifactory.server 'vinod'
-                 def uploadSpec = """{
-                    "files": [{
-                       "pattern": "*.txt",
-                       "target": "vinod/"
-                    }]
-                 }"""
-
-                 server.upload(uploadSpec) 
+		jf rt u --flat=true vinod.txt vinod/ --server-id=vinod
                }
             }
         }
-    } 
-}
+} 
