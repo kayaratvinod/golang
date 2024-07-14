@@ -14,7 +14,7 @@ pipeline {
         stage('upload') {
            steps {
 		git url: 'git@github.com:kayaratvinod/golang.git', branch: "${BRANCHNAME}"		
-		jf 'rt u *.txt vinod/'
+		jf 'rt u *.txt vinod/mybuild'
 		jf 'rt build-publish'
                }
            }
