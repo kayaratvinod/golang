@@ -19,6 +19,7 @@ node('10.134.135.130') {
 	}
    }catch (Exception e) {
 	if (autoCancelled) {
+		echo 'PipeLine Succeeded'
 		currentBuild.result = 'SUCCESS'
 		return
 	}
