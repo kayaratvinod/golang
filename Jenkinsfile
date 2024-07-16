@@ -10,14 +10,14 @@ def autoCancelled = false
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
 	    echo 'starting pre-flights ...' + env.CHANGE_BRANCH
-            if (branchname == "ranjith") {
+     //       if (branchname == "ranjith") {
                  echo 'starting pre-flights ...' + env.BRANCH_NAME
                  echo 'starting pre-flights ...' + env.CHANGE_BRANCH
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
-       	    } else {
-                 echo 'This is not a pull request ...' + env.BRANCH_NAME
-       	    } 
+      // 	    } else {
+       //          echo 'This is not a pull request ...' + env.BRANCH_NAME
+       //	    } 
 	    }
     	}
         stage('Build') {
