@@ -4,7 +4,21 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
-
+    stages {
+        stage('build') {
+            when {
+                expression {
+                    def skipBuild=env.SKIP_BUILD 
+                    return skipBuild == null || skipBuild.isEmpty()
+                }
+            }
+            steps {
+                script {
+                    echo 'starting build ...'
+                }
+            }
+        }
+    
         stage('build') {
             def skipBuild=env.SKIP_BUILD
             if (skipBuild == null || skipBuild.isEmpty()) {
@@ -26,6 +40,7 @@ node('10.134.135.130') {
             echo 'Deploying on a Linux node...'
             // Deploy steps
         }
+    }
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
