@@ -8,7 +8,7 @@ node('10.134.135.130') {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
             if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinXd") {
-                echo 'starting build ...' env.BRANCH_NAME}
+                echo 'starting build ...' + env.BRANCH_NAME
        	    } else {
             	echo 'skipping build ...'
        	    } 
