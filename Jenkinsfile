@@ -8,9 +8,9 @@ node('10.134.135.130') {
             def skipBuild=env.SKIP_BUILD
             if (skipBuild == null || skipBuild.isEmpty()) {
                 echo 'starting build ...'
+		return
        	    } else {
             	echo 'skipping build ...'
-		return
        	    } 
     	}
         stage('Build') {
