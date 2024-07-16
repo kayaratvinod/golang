@@ -5,17 +5,17 @@ node('10.134.135.130') {
     }
     try {
 	withEnv([...]){
-        stage('Pre-Flight') {
-            def skipBuild=env.SKIP_BUILD
-            def branchname=env.BRANCH_NAME
-            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinod") {
-                echo 'starting build ...' + env.BRANCH_NAME
-		currentBuild.result = 'SUCCESS'
-		return
-       	    } else {
-                echo 'skipping build ...' + env.BRANCH_NAME
-       	    } 
-    	}
+            stage('Pre-Flight') {
+                 def skipBuild=env.SKIP_BUILD
+                 def branchname=env.BRANCH_NAME
+                 if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinod") {
+                      echo 'starting build ...' + env.BRANCH_NAME
+		      currentBuild.result = 'SUCCESS'
+		      return
+       	         } else {
+                      echo 'skipping build ...' + env.BRANCH_NAME
+       	         } 
+    	    }
 	}
         stage('Build') {
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
