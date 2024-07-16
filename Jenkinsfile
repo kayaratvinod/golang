@@ -7,7 +7,7 @@ node('10.134.135.130') {
         stage('build') {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
-            if (skipBuild == null || skipBuild.isEmpty()) {
+            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinod") {
                 echo 'starting build ...'
 		return
        	    } else {
