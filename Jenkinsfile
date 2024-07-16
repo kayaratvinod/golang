@@ -1,7 +1,10 @@
 node('10.134.135.130') {
+    environment {
+        GIT_PR_TRIGGER = "${env.CHANGE_ID}"
+    }
     try {
         stage('Build') {
-            echo 'Building on a Linux node...'
+            echo 'Building on a Linux node...${env.CHANGE_ID}'
             // Build steps
         }
         stage('Test') {
