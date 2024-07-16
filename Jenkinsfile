@@ -15,12 +15,10 @@ def autoCancelled = false
        	    } else {
                  echo 'skipping build ...' + env.BRANCH_NAME
        	    } 
-	    if (branchname == "vinod"){
-		 echo 'Second'
-	    }
     	}
         stage('Build') {
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
+	    echo 'Pulling...' + env.GITHUB_PR_STATE
 	    echo 'Pulling...' + env.BRANCH_NAME
             // Build steps
         }
