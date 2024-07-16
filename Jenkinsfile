@@ -5,20 +5,6 @@ node('10.134.135.130') {
     }
     try {
         stage('build') {
-            when {
-                expression {
-                    def skipBuild=env.SKIP_BUILD 
-                    return skipBuild == null || skipBuild.isEmpty()
-                }
-            }
-            steps {
-                script {
-                    echo 'starting build ...'
-                }
-            }
-        }
-    
-        stage('build') {
             def skipBuild=env.SKIP_BUILD
             if (skipBuild == null || skipBuild.isEmpty()) {
                 echo 'starting build ...'
