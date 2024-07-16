@@ -6,6 +6,7 @@ def autoCancelled = false
     }
     try {
         stage('Pre-Flight') {
+	    if (context.env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
             if (branchname == "ranjith") {
@@ -16,6 +17,7 @@ def autoCancelled = false
        	    } else {
                  echo 'skipping build ...' + env.BRANCH_NAME
        	    } 
+	    }
     	}
         stage('Build') {
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
