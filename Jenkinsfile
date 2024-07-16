@@ -14,8 +14,7 @@ node('10.134.135.130') {
        	         } else {
                       echo 'skipping build ...' + env.BRANCH_NAME
        	         } 
-    	    }
-   catch (Exception e) {
+   }catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
     } finally {
