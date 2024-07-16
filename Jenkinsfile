@@ -10,6 +10,7 @@ node('10.134.135.130') {
                 echo 'starting build ...'
        	    } else {
             	echo 'skipping build ...'
+		return
        	    } 
     	}
         stage('Build') {
