@@ -8,7 +8,7 @@ def autoCancelled = false
         stage('Pre-Flight') {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
-            if (branchname == "vinod") {
+            if (branchname == "ranjith") {
                  echo 'starting pre-flights ...' + env.BRANCH_NAME
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
