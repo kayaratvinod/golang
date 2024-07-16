@@ -13,6 +13,7 @@ def autoCancelled = false
      //       if (branchname == "ranjith") {
                  echo 'starting pre-flights ...' + env.BRANCH_NAME
                  echo 'starting pre-flights ...' + env.CHANGE_BRANCH
+                 echo 'starting pre-flights ...' + env.TARGET_BRANCH
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
       // 	    } else {
