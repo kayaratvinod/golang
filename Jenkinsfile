@@ -4,15 +4,15 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
-        stage('Pre-Flight') {
-            when {
-                expression { return env.GIT_PR_TRIGGER }
-            }
-            steps {
-                echo "This build was triggered by a pull request with ID: ${env.CHANGE_ID}"
-                // Your build steps here
-            }
-        }
+
+        stage('build') {
+            def skipBuild=env.SKIP_BUILD
+            if (skipBuild == null || skipBuild.isEmpty()) {
+                echo 'starting build ...'
+       	    } else {
+            	echo 'skipping build ...'
+       	    } 
+    	}
         stage('Build') {
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
 	    echo 'Pulling...' + env.BRANCH_NAME
