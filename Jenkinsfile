@@ -9,7 +9,7 @@ def autoCancelled = false
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
-            if (branchname == "ranjith") {
+            if (branchname == "vinod") {
                  echo 'starting pre-flights ...' + env.BRANCH_NAME
                  echo 'starting pre-flights ...' + env.CHANGE_BRANCH
 		 autoCancelled = true	
