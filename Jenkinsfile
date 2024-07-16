@@ -20,7 +20,7 @@ def autoCancelled = false
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
 	    echo 'Pulling...' + env.GITHUB_PR_STATE
 	    echo 'Pulling...' + env.BRANCH_NAME
-	    echo 'Pulling...' + env.GITHUB_PR_TARGET_BRANCH 
+	    echo 'Pulling...' + env.CHANGE_TARGET 
             // Build steps
         }
         stage('Test') {
