@@ -4,11 +4,13 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
-        stage('build') {
+        stage('Pre-Flight') {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
-            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinXd") {
+            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinod") {
                 echo 'starting build ...' + env.BRANCH_NAME
+		exit_now = true
+		currentBuild.result = 'SUCCESS'
        	    } else {
                 echo 'skipping build ...' + env.BRANCH_NAME
        	    } 
