@@ -4,7 +4,6 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
-    stages {
         stage('build') {
             when {
                 expression {
@@ -40,7 +39,6 @@ node('10.134.135.130') {
             echo 'Deploying on a Linux node...'
             // Deploy steps
         }
-    }
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
