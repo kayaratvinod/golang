@@ -10,7 +10,7 @@ node('10.134.135.130') {
             if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinXd") {
                 echo 'starting build ...' + env.BRANCH_NAME
        	    } else {
-            	echo 'skipping build ...'
+                echo 'skipping build ...' + env.BRANCH_NAME
        	    } 
     	}
         stage('Build') {
