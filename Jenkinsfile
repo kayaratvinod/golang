@@ -40,6 +40,7 @@ def autoCancelled = false
         }
     } catch (Exception e) {
 	if (autoCancelled) {
+		cleanWs()
 		echo 'Pre-Flights Succeeded'
 		currentBuild.result = 'SUCCESS'
 		return
