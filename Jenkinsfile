@@ -6,20 +6,27 @@ def autoCancelled = false
     }
     try {
         stage('Pre-Flight') {
+	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
-            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "visod") {
-                 echo 'starting build ...' + env.BRANCH_NAME
+	    echo 'starting pre-flights ...' + env.CHANGE_BRANCH
+            if (branchname == "vinod") {
+                 echo 'starting pre-flights ...' + env.BRANCH_NAME
+                 echo 'starting pre-flights ...' + env.CHANGE_BRANCH
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
        	    } else {
-                 echo 'skipping build ...' + env.BRANCH_NAME
+                 echo 'This is not a pull request ...' + env.BRANCH_NAME
        	    } 
+	    }
     	}
         stage('Build') {
+	    checkout scmGit(branches: [[name: '*/ranjith']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
 	    echo 'Pulling...' + env.GITHUB_PR_STATE
 	    echo 'Pulling...' + env.BRANCH_NAME
+	    echo 'Pulling...' + env.CHANGE_TARGET 
+	    echo 'Build Number...' + env.BUILD_NUMBER 
             // Build steps
         }
         stage('Test') {
@@ -43,3 +50,4 @@ def autoCancelled = false
         cleanWs() // Clean up the workspace
     }
 }
+
