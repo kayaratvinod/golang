@@ -4,7 +4,6 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
-	withEnv([...]){
             stage('Pre-Flight') {
                  def skipBuild=env.SKIP_BUILD
                  def branchname=env.BRANCH_NAME
@@ -16,7 +15,6 @@ node('10.134.135.130') {
                       echo 'skipping build ...' + env.BRANCH_NAME
        	         } 
     	    }
-	}
    catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
