@@ -15,7 +15,7 @@ def autoCancelled = false
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
        	    } else {
-                 echo 'skipping build ...' + env.BRANCH_NAME
+                 echo 'This is not a pull request ...' + env.BRANCH_NAME
        	    } 
 	    }
     	}
