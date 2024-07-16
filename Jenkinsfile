@@ -7,6 +7,7 @@ node('10.134.135.130') {
         stage('Build') {
             echo 'Building on a Linux node...${GIT_PR_TRIGGER}'
             echo "${BRANCHNAME}"
+	    echo 'Pulling...' + env.BRANCH_NAME
             // Build steps
         }
         stage('Test') {
