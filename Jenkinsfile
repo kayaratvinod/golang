@@ -9,8 +9,7 @@ node('10.134.135.130') {
             def branchname=env.BRANCH_NAME
             if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "vinod") {
                 echo 'starting build ...' + env.BRANCH_NAME
-		exit_now = true
-		currentBuild.result = 'SUCCESS'
+		return
        	    } else {
                 echo 'skipping build ...' + env.BRANCH_NAME
        	    } 
