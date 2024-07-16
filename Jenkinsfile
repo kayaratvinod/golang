@@ -1,33 +1,47 @@
-pipeline {
-    agent { label '10.134.135.130' }
+node('10.134.135.130') {
+def autoCancelled = false
     environment {
-        GO122MODULE = 'on'
-        GOPATH = "${env.WORKSPACE}/go"
-        PATH = "${env.PATH}:${env.GOPATH}/bin"
+        GIT_PR_TRIGGER = "${env.CHANGE_ID}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
-    options {
-        // This is required if you want to clean before build
-        skipDefaultCheckout(true)
-    }
-    stages {
-        stage('upload') {
-           steps {
-		git url: 'git@github.com:kayaratvinod/golang.git', branch: "${BRANCHNAME}"		
-		jf 'rt u *.txt vinod/mybuild/'
-		jf 'rt build-publish'
-               }
-           }
-    }
-    post {
-        always {
-            cleanWs()
+    try {
+        stage('Pre-Flight') {
+            def skipBuild=env.SKIP_BUILD
+            def branchname=env.BRANCH_NAME
+            if ((skipBuild == null || skipBuild.isEmpty()) && branchname == "visod") {
+                 echo 'starting build ...' + env.BRANCH_NAME
+		 autoCancelled = true	
+	    	 error('Pre-Flight Succeded')
+       	    } else {
+                 echo 'skipping build ...' + env.BRANCH_NAME
+       	    } 
+    	}
+        stage('Build') {
+	    echo 'Pulling...' + env.GIT_PR_TRIGGER
+	    echo 'Pulling...' + env.GITHUB_PR_STATE
+	    echo 'Pulling...' + env.BRANCH_NAME
+	    echo 'Pulling...' + env.GITHUB_PR_TARGET_BRANCH 
+            // Build steps
         }
-        success {
-            echo 'Pipeline completed successfully!'
+        stage('Test') {
+            echo 'Testing on a Linux node...'
+            // Test steps
         }
-        failure {
-            echo 'Pipeline failed!'
+        stage('Deploy') {
+            echo 'Deploying on a Linux node...'
+            // Deploy steps
         }
+    } catch (Exception e) {
+	if (autoCancelled) {
+		echo 'Pre-Flights Succeeded'
+		currentBuild.result = 'SUCCESS'
+		return
+	}
+        currentBuild.result = 'FAILURE'
+        throw e
+    } finally {
+        // Cleanup steps
+        cleanWs() // Clean up the workspace
     }
-} 
+}
+
