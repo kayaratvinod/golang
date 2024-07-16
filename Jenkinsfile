@@ -6,7 +6,7 @@ def autoCancelled = false
     }
     try {
         stage('Pre-Flight') {
-	    if (context.env.CHANGE_ID) {
+	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
             if (branchname == "ranjith") {
