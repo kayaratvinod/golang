@@ -24,6 +24,7 @@ def autoCancelled = false
 	    echo 'Pulling...' + env.GITHUB_PR_STATE
 	    echo 'Pulling...' + env.BRANCH_NAME
 	    echo 'Pulling...' + env.CHANGE_TARGET 
+	    echo 'Build Number...' + env.BUILD_NUMBER 
             // Build steps
         }
         stage('Test') {
