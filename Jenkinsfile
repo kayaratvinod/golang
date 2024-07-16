@@ -17,7 +17,7 @@ node('10.134.135.130') {
        	         } 
     	    }
 	}
-    } catch (Exception e) {
+   catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
     } finally {
