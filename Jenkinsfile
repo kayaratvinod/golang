@@ -5,7 +5,7 @@ node('10.134.135.130') {
     }
     try {
 	stage('Sonar Analysis') {
-    	    when (BRANCHNAME != 'master') {
+    	    when (${BRANCHNAME} != 'master') {
             echo 'Excecuted only on master branch.'
     	    }
 	}
