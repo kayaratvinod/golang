@@ -4,7 +4,6 @@ pipeline {
         stage ('First') {
             steps {
                 echo "First"
-            }
 
             if (env.BRANCH_NAME == 'vinod') {
                 echo 'First stage is enought, exit 0 shoul happened here'
@@ -15,6 +14,7 @@ pipeline {
             }
 
         }
+	}
 
         stage('Second') {
             steps {
