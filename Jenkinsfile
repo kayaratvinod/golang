@@ -4,6 +4,11 @@ node('10.134.135.130') {
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     try {
+	stage('Sonar Analysis') {
+    	    when (BRANCHNAME != 'master') {
+            echo 'Excecuted only on master branch.'
+    	    }
+	}
         stage('build') {
             def skipBuild=env.SKIP_BUILD
             if (skipBuild == null || skipBuild.isEmpty()) {
