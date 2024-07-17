@@ -2,8 +2,8 @@ pipeline {
     agent { label '10.134.135.130' }
 
     environment {
-        GOROOT = 'C:\\Users\\Administrator\\go'
-        GOPATH = 'C:\\Go1225'
+        GOPATH = 'C:\\Users\\Administrator\\go'
+        GOROOT = 'C:\\Go1225'
         PATH = "${GOROOT}\\bin;${GOPATH}\\bin;${env.PATH}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
