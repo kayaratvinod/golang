@@ -1,5 +1,8 @@
 node('10.134.135.130') {
 def autoCancelled = false
+    tools {
+        go 'go1.22.5'
+    }
     environment {
         GIT_PR_TRIGGER = "${env.CHANGE_ID}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
