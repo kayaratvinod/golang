@@ -47,9 +47,9 @@ def autoCancelled = false
 	stage('Build') {
                 sh 'go build -o hello-world'
         }
-        stage('Package') {
-                sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
-        }
+//        stage('Package') {
+ //               sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
+  //      }
     } catch (Exception e) {
 	if (autoCancelled) {
 		cleanWs()
