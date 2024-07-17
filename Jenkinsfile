@@ -7,6 +7,8 @@ node('10.134.135.130') {
     try {
         stage('Pre-Flight') {
 	    env.PATH = "${goInstallDir}\\bin;${env.PATH}"
+        env.GOPATH = goWorkspace
+        env.GO1225MODULE = 'on'
 	    bat 'go version'
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
