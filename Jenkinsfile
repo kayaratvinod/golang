@@ -43,21 +43,24 @@ node('10.134.135.130') {
                 bat 'go mod init golang'
         }
         stage('Code Analysis') {
-		echo 'came here'
-                bat 'go vet hello-world.go'
+                bat 'go vet ./...'
         }
         stage('Install Dependencies') {
                 bat 'go mod tidy'
         }
-        stage('Install Dependencies') {
-                bat 'go fmt .\..'
+        stage('FMT Stage') {
+                bat 'go fmt ./...'
+        }
+        stage('Linting') {
+                bat 'golint  ./...'
         }
 	stage('Build') {
                 bat 'go build -o hello-world'
         }
-//        stage('Package') {
- //               sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
-  //      }
+        stage('Package') {
+                bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
+		bat 'jf rt u "${BUILDNUMBER}_hello-world.go" "vinod/"'
+        }
     } catch (Exception e) {
 	if (autoCancelled) {
 		cleanWs()
