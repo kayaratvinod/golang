@@ -1,12 +1,13 @@
 node('10.134.135.130') {
-def goVersion = '1.22.5'
-def goWorkspace = "${env.WORKSPACE}/go"
-def autoCancelled = false
+    def goVersion = '1.22.5'
+    def goInstallDir = 'C:\\Go'
+    def goWorkspace = "${env.WORKSPACE}\\go"
+    def autoCancelled = false
 
     try {
         stage('Pre-Flight') {
-            env.GOPATH = goWorkspace
-            env.GO1225MODULE = 'on'
+	    env.PATH = "${goInstallDir}\\bin;${env.PATH}"
+	    bat 'go version'
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
