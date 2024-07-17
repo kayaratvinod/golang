@@ -48,7 +48,7 @@ pipeline {
             steps {
                 bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
 //		jf rt u "${BUILDNUMBER}"_hello-world.go "vinod/"
-		echo "${BUILDNUMBER}"
+		echo "${BUILDNUMBER}"_hello-world.go
 //                bat 'move "${BUILDNUMBER}"_hello-world.go c:\'
             }
         }
