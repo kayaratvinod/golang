@@ -19,7 +19,12 @@ node('10.134.135.130') {
 	         checkout scmGit(branches: [[name: "*/${env.CHANGE_BRANCH}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Target branch of pull request ...' + env.CHANGE_TARGET
 	         echo 'Build Number...' + env.BUILD_NUMBER
-		 bat 'go mod init golang'
+
+	         stage('Initialize golang') {
+                	echo 'came here'
+                	bat 'go mod init golang'
+        	 }
+//		 bat 'go mod init golang'
 		 bat 'go vet ./...'
 		 bat 'go mod tidy'
 		 bat 'go fmt ./...'
