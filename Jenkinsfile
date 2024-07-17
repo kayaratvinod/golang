@@ -2,9 +2,9 @@ pipeline {
     agent { label '10.134.135.130' }
 
     environment {
-        GO122MODULE = 'on'
-        GOPATH = "${env.WORKSPACE}/go"
-        PATH = "${env.PATH}:${env.GOPATH}/bin"
+        GOROOT = 'C:\\Users\\Administrator\\go'
+        GOPATH = 'C:\\Go1225'
+        PATH = "${GOROOT}\\bin;${GOPATH}\\bin;${env.PATH}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
     }
     options {
