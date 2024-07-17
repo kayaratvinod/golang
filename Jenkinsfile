@@ -6,7 +6,7 @@ node('10.134.135.130') {
     def autoCancelled = false
 
     try {
-        stage('Pre-Flight') {
+\\        stage('Pre-Flight') {
 	    env.PATH = "${goROOT}\\bin;${goPATH}\\bin;${env.PATH}"
             env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
@@ -41,7 +41,7 @@ node('10.134.135.130') {
       // 	    } else {
        //          echo 'This is not a pull request ...' + env.BRANCH_NAME
        //	    } 
-	    }
+//	    }
     	}
         stage('Build') {
 	    echo 'Pulling...' + env.BRANCH_NAME
