@@ -20,15 +20,22 @@ node('10.134.135.130') {
                  echo 'Target branch of pull request ...' + env.CHANGE_TARGET
 	         echo 'Build Number...' + env.BUILD_NUMBER
 
-	         stage('Initialize golang') {
-                	echo 'came here'
+	        stage('Initialize golang') {
                 	bat 'go mod init golang'
         	 }
-//		 bat 'go mod init golang'
-		 bat 'go vet ./...'
-		 bat 'go mod tidy'
-		 bat 'go fmt ./...'
-		 bat 'golint ./...'
+	        stage('Code Analysis') {
+                	bat 'go vet ./...'
+        	}
+        	stage('Install Dependencies') {
+                	bat 'go mod tidy'
+        	}
+        	stage('FMT Stage') {
+                	bat 'go fmt ./...'
+        	}
+        	stage('Linting') {
+                	bat 'golint  ./...'
+        	}
+
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
       // 	    } else {
