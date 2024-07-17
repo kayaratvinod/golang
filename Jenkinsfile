@@ -3,10 +3,9 @@ def autoCancelled = false
     environment {
         GIT_PR_TRIGGER = "${env.CHANGE_ID}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
-        GO122MODULE = 'on'
-        GOPATH = "${env.WORKSPACE}/go"
-        PATH = "${env.PATH}:${env.GOPATH}/bin"
-	BRANCHNAME = "${env.BRANCH_NAME}"
+        GOPATH = 'C:\\Users\\Administrator\\go'
+        GOROOT = 'C:\\Go1225'
+        PATH = "${GOROOT}\\bin;${GOPATH}\\bin;${env.PATH}"
     }
 
     try {
