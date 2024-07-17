@@ -15,7 +15,7 @@ def autoCancelled = false
                  echo 'Change Source ...' + env.CHANGE_BRANCH
 	    	// checkout scmGit(branches: [[name: '*/branchname']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  checkout scmGit(
-                     branches: [[name: "*/${env.BRANCH_NAME}"]], 
+                     branches: [[name: "*/vinod]], 
                      extensions: [], 
                      userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']]
                  )
