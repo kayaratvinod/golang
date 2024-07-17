@@ -1,6 +1,6 @@
 node('10.134.135.130') {
     def goVersion = '1.22.5'
-    def goInstallDir = 'C:\\Go'
+    def goInstallDir = 'C:\\Go1225'
     def goWorkspace = "${env.WORKSPACE}\\go"
     def autoCancelled = false
 
