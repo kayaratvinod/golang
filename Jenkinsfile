@@ -36,33 +36,19 @@ def autoCancelled = false
             // Build steps
         }
         stage('Initialize golang') {
-            steps {
                 sh 'go mod init golang'
-            }
         }
         stage('Code Analysis') {
-            parallel {
-                stage('Vet') {
-                    steps {
-                        sh 'go vet ./...'
-                    }
-                }
-            }
+                sh 'go vet ./...'
         }
         stage('Install Dependencies') {
-            steps {
                 sh 'go mod tidy'
-            }
         }
 	stage('Build') {
-            steps {
                 sh 'go build -o hello-world'
-            }
         }
         stage('Package') {
-            steps {
                 sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
-            }
         }
     } catch (Exception e) {
 	if (autoCancelled) {
