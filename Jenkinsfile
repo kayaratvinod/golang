@@ -42,17 +42,17 @@ def autoCancelled = false
         }
         stage('Initialize golang') {
 		echo 'came here'
-                go mod init golang
+                bat 'go mod init golang'
         }
         stage('Code Analysis') {
 		echo 'came here'
-                sh 'go vet ./...'
+                bat 'go vet hello-world.go'
         }
         stage('Install Dependencies') {
-                sh 'go mod tidy'
+                bat 'go mod tidy'
         }
 	stage('Build') {
-                sh 'go build -o hello-world'
+                bat 'go build -o hello-world'
         }
 //        stage('Package') {
  //               sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
