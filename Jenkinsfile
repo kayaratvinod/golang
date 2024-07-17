@@ -37,11 +37,11 @@ node('10.134.135.130') {
         	}
 
 		 autoCancelled = true	
-	    	 error('Pre-Flight Succeded')
+//	    	 error('Pre-Flight Succeded')
  //      	    } else {
   //               echo 'This is not a pull request ...' + env.BRANCH_NAME
    //    	    } 
-    	}
+    	} else {
         stage('Build') {
 	    echo 'Pulling...' + env.BRANCH_NAME
 	    checkout scmGit(branches: [[name: "*/${env.BRANCH_NAME}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
@@ -75,6 +75,7 @@ node('10.134.135.130') {
                 bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
 		bat 'jf rt u "${BUILDNUMBER}_hello-world.go" "vinod/"'
         }
+	}
     } catch (Exception e) {
 	if (autoCancelled) {
 		cleanWs()
