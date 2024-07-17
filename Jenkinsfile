@@ -7,6 +7,9 @@ def autoCancelled = false
         GOROOT = 'C:\\Go1225'
         PATH = "${GOROOT}\\bin;${GOPATH}\\bin;${env.PATH}"
     }
+    withEnv(['GOPATH = C:\\Users\\Administrator\\go', 'GOROOT = C:\\Go1225']) {
+    // some block
+    }
 
     try {
         stage('Pre-Flight') {
@@ -42,7 +45,6 @@ def autoCancelled = false
         }
         stage('Initialize golang') {
 		echo 'came here'
-		bat 'export env.PATH'
                 bat 'go mod init golang'
         }
         stage('Code Analysis') {
