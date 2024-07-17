@@ -13,7 +13,7 @@ def autoCancelled = false
      //       if (branchname == "ranjith") {
                  echo 'Branch  ...' + env.BRANCH_NAME
                  echo 'Change Source ...' + env.CHANGE_BRANCH
-	    	 checkout scmGit(branches: [[name: '*/vinod]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
+	    	 checkout scmGit(branches: [[name: '*/vinod']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Change Target ...' + env.CHANGE_TARGET
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
