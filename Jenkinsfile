@@ -39,9 +39,14 @@ pipeline {
                 bat 'go mod tidy'
             }
         }
-        stage('Lint') {
+        stage('Formatting') {
             steps {
-                bat 'go lint  hello-world.go'
+                bat 'go fmt  hello-world.go'
+            }
+        }
+        stage('Linting') {
+            steps {
+                bat 'golint  hello-world.go'
             }
         }
 	stage('Build') {
