@@ -6,6 +6,7 @@ pipeline {
         GOROOT = 'C:\\Go1225'
         PATH = "${GOROOT}\\bin;${GOPATH}\\bin;${env.PATH}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
+	BUILDNUMBER = "${env.BUILD_NUMBER}"
     }
     options {
         // This is required if you want to clean before build
@@ -45,7 +46,7 @@ pipeline {
         }
         stage('Package') {
             steps {
-                sh 'mv hello-world.go /tmp/"${BRANCHNAME}"_hello-world.go'
+                bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
             }
         }
     }
