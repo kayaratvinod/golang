@@ -28,7 +28,7 @@ pipeline {
             parallel {
                 stage('Vet') {
                     steps {
-                        bat 'go vet ./...'
+                        bat 'go vet .\'
                     }
                 }
             }
