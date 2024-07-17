@@ -24,7 +24,7 @@ def autoCancelled = false
 	    }
     	}
         stage('Build') {
-	    checkout scmGit(branches: [[name: '*/${BRANCHNAME}']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
+	    checkout scmGit(branches: [[name: '*/'env.BRANCHNAME]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
 	    echo 'Pulling...' + env.GIT_PR_TRIGGER
 	    echo 'Pulling...' + env.GITHUB_PR_STATE
 	    echo 'Pulling...' + env.BRANCH_NAME
