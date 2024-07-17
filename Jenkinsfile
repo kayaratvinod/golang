@@ -23,6 +23,7 @@ def autoCancelled = false
 	         checkout scmGit(branches: [[name: "*/${env.CHANGE_BRANCH}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Target branch of pull request ...' + env.CHANGE_TARGET
 	         echo 'Build Number...' + env.BUILD_NUMBER
+		 bat 'go mod init golang'
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
       // 	    } else {
