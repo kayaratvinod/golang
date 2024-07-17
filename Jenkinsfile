@@ -6,11 +6,8 @@ node('10.134.135.130') {
 
     try {
         stage('Pre-Flight') {
-	    env.PATH = "${goInstallDir}\\bin;${env.PATH}"
-        env.GOPATH = goWorkspace
-        env.GO1225MODULE = 'on'
-	    bat 'echo %PATH%'
-	   echo env.PATH
+	   // env.PATH = "${goInstallDir}\\bin;${env.PATH}"
+            //env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
