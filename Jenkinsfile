@@ -3,7 +3,12 @@ def autoCancelled = false
     environment {
         GIT_PR_TRIGGER = "${env.CHANGE_ID}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
+        GO122MODULE = 'on'
+        GOPATH = "${env.WORKSPACE}/go"
+        PATH = "${env.PATH}:${env.GOPATH}/bin"
+	BRANCHNAME = "${env.BRANCH_NAME}"
     }
+
     try {
         stage('Pre-Flight') {
 	    if (env.CHANGE_ID) {
