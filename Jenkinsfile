@@ -3,6 +3,7 @@ def autoCancelled = false
     environment {
         GIT_PR_TRIGGER = "${env.CHANGE_ID}"
 	BRANCHNAME = "${env.BRANCH_NAME}"
+	CHANGEBRANCH = "${env.BRANCH_NAME}"
     }
     try {
         stage('Pre-Flight') {
@@ -13,6 +14,7 @@ def autoCancelled = false
      //       if (branchname == "ranjith") {
                  echo 'Branch  ...' + env.BRANCH_NAME
                  echo 'Change Source ...' + env.CHANGE_BRANCH
+	    	 checkout scmGit(branches: [[name: '*/${CHANGEBRANCH}']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Change Target ...' + env.CHANGE_TARGET
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
