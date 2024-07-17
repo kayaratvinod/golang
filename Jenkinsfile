@@ -6,15 +6,15 @@ node('10.134.135.130') {
     def autoCancelled = false
 
     try {
-//        stage('Pre-Flight') {
 	    env.PATH = "${goROOT}\\bin;${goPATH}\\bin;${env.PATH}"
             env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
-            def skipBuild=env.SKIP_BUILD
-            def branchname=env.BRANCH_NAME
-	    echo 'starting pre-flights ...' + env.CHANGE_BRANCH
-     //       if (branchname == "ranjith") {
+            	def skipBuild=env.SKIP_BUILD
+            	def branchname=env.BRANCH_NAME
+	    	echo 'starting pre-flights ...' + env.CHANGE_BRANCH
+              if (branchname == "vinod") {
                  echo 'Branch  ...' + env.BRANCH_NAME
+	    	 echo 'Pulling...' + env.BRANCH_NAME
                  echo 'Source branch of Pull Request ...' + env.CHANGE_BRANCH
 	         checkout scmGit(branches: [[name: "*/${env.CHANGE_BRANCH}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Target branch of pull request ...' + env.CHANGE_TARGET
@@ -38,10 +38,9 @@ node('10.134.135.130') {
 
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
-      // 	    } else {
-       //          echo 'This is not a pull request ...' + env.BRANCH_NAME
-       //	    } 
-//	    }
+       	    } else {
+                 echo 'This is not a pull request ...' + env.BRANCH_NAME
+       	    } 
     	}
         stage('Build') {
 	    echo 'Pulling...' + env.BRANCH_NAME
