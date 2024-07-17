@@ -28,19 +28,19 @@ pipeline {
             parallel {
                 stage('Vet') {
                     steps {
-                        sh 'go vet ./...'
+                        bat 'go vet ./...'
                     }
                 }
             }
         }
         stage('Install Dependencies') {
             steps {
-                sh 'go mod tidy'
+                bat 'go mod tidy'
             }
         }
 	stage('Build') {
             steps {
-                sh 'go build -o hello-world'
+                bat 'go build -o hello-world'
             }
         }
         stage('Package') {
