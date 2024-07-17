@@ -47,7 +47,7 @@ pipeline {
         stage('Package') {
             steps {
                 bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
-		jf rt u "${BUILDNUMBER}"_hello-world.go "vinod/"
+//		jf rt u "${BUILDNUMBER}"_hello-world.go "vinod/"
 		echo "${BUILDNUMBER}"
 //                bat 'move "${BUILDNUMBER}"_hello-world.go c:\'
             }
