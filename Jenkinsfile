@@ -12,10 +12,12 @@ def autoCancelled = false
 	    echo 'starting pre-flights ...' + env.CHANGE_BRANCH
      //       if (branchname == "ranjith") {
                  echo 'Branch  ...' + env.BRANCH_NAME
-                 echo 'Change Source ...' + env.CHANGE_BRANCH
+                 echo 'Source branch of Pull Request ...' + env.CHANGE_BRANCH
+
 	    	// checkout scmGit(branches: [[name: '*/branchname']], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
 	         checkout scmGit(branches: [[name: "*/${env.CHANGE_BRANCH}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
-                 echo 'Change Target ...' + env.CHANGE_TARGET
+                 echo 'Target branch of pull request ...' + env.CHANGE_TARGET
+	         echo 'Build Number...' + env.BUILD_NUMBER
 		 autoCancelled = true	
 	    	 error('Pre-Flight Succeded')
       // 	    } else {
