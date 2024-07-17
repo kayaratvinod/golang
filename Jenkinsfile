@@ -36,9 +36,11 @@ def autoCancelled = false
             // Build steps
         }
         stage('Initialize golang') {
+		echo 'came here'
                 sh 'go mod init golang'
         }
         stage('Code Analysis') {
+		echo 'came here'
                 sh 'go vet ./...'
         }
         stage('Install Dependencies') {
