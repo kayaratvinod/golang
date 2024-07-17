@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Initialize golang') {
             steps {
-                go mod init golang
+                bat 'go mod init golang'
             }
         }
         stage('Code Analysis') {
