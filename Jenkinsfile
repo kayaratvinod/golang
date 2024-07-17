@@ -1,12 +1,13 @@
 node('10.134.135.130') {
     def goVersion = '1.22.5'
-    def goInstallDir = 'C:\\Go1225'
+    def goROOT = 'C:\\Go1225'
+    def goPATH = 'C:\\Users\\Administrator\\go' 
     def goWorkspace = "${env.WORKSPACE}\\go"
     def autoCancelled = false
 
     try {
         stage('Pre-Flight') {
-	    env.PATH = "${goInstallDir}\\bin;${env.PATH}"
+	    env.PATH = "${goROOT}\\bin;${goPATH}\\bin${env.PATH}"
             env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
