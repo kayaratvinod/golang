@@ -49,6 +49,9 @@ node('10.134.135.130') {
         stage('Install Dependencies') {
                 bat 'go mod tidy'
         }
+        stage('Install Dependencies') {
+                bat 'go fmt .\..'
+        }
 	stage('Build') {
                 bat 'go build -o hello-world'
         }
