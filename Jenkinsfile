@@ -9,7 +9,7 @@ node('10.134.135.130') {
 	    env.PATH = "${goInstallDir}\\bin;${env.PATH}"
         env.GOPATH = goWorkspace
         env.GO1225MODULE = 'on'
-	    bat 'echo $PATH'
+	    bat 'echo %PATH%'
 	    if (env.CHANGE_ID) {
             def skipBuild=env.SKIP_BUILD
             def branchname=env.BRANCH_NAME
