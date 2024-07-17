@@ -39,6 +39,11 @@ pipeline {
                 bat 'go mod tidy'
             }
         }
+        stage('Lint') {
+            steps {
+                bat 'go lint  hello-world.go'
+            }
+        }
 	stage('Build') {
             steps {
                 bat 'go build -o hello-world'
