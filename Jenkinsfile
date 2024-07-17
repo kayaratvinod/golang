@@ -10,10 +10,11 @@ node('10.134.135.130') {
             env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
             	def skipBuild=env.SKIP_BUILD
-            	def branchname=env.BRANCH_NAME
-	    	echo 'starting pre-flights ...' + env.CHANGE_BRANCH
+            	def branchname=env.CHANGE_BRANCH
+	    	echo 'entering pre-flights ...' + env.CHANGE_BRANCH
 //              if (branchname == "vinod") {
-                 echo 'Branch  ...' + env.BRANCH_NAME
+		 echo 'Starting Pre-Flights'
+                 echo 'Branch  ...' + env.CHANGE_BRANCH
                  echo 'Source branch of Pull Request ...' + env.CHANGE_BRANCH
 	         checkout scmGit(branches: [[name: "*/${env.CHANGE_BRANCH}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
                  echo 'Target branch of pull request ...' + env.CHANGE_TARGET
