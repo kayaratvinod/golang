@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label '10.134.135.130' }
 
     environment {
         GO122MODULE = 'on'
