@@ -42,7 +42,7 @@ def autoCancelled = false
         }
         stage('Initialize golang') {
 		echo 'came here'
-                sh 'go mod init golang'
+                go mod init golang
         }
         stage('Code Analysis') {
 		echo 'came here'
