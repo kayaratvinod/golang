@@ -78,8 +78,8 @@ node('10.134.135.130') {
         }
         stage('Package') {
 		echo env.BUILD_NUMBER
-                bat 'ren hello-world.go "$BUILDNUMBER"_hello-world.go'
-		bat 'jf rt u $BUILDNUMBER"_hello-world.go" "vinod/"'
+                bat 'ren hello-world.go "env.BUILD_NUMBER"_hello-world.go'
+		bat 'jf rt u "env.BUILD_NUMBER"_hello-world.go "vinod/"'
         }
 	}
     } catch (Exception e) {
