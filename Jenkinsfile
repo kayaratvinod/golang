@@ -9,6 +9,7 @@ node('10.134.135.130') {
 	    env.PATH = "${goROOT}\\bin;${goPATH}\\bin;${env.PATH}"
             env.GO1225MODULE = 'on'
 	    if (env.CHANGE_ID) {
+                echo 'Change ID  ...' + env.CHANGE_ID
             	def skipBuild=env.SKIP_BUILD
             	def branchname=env.CHANGE_BRANCH
 	    	echo 'entering pre-flights ...' + env.CHANGE_BRANCH
