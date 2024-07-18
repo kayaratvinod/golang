@@ -52,6 +52,7 @@ node('10.134.135.130') {
 	    echo 'Pulling...' + env.BRANCH_NAME
 	    echo 'Pulling...' + env.CHANGE_TARGET 
 	    echo 'Build Number...' + env.BUILD_NUMBER 
+	    def BUILDNUMBER = env.BUILD_NUMBER 
             // Build steps
         }
 //	stage('Build Another Job') {
@@ -77,7 +78,7 @@ node('10.134.135.130') {
                 bat 'go build -o hello-world'
         }
         stage('Package') {
-		echo env.BUILD_NUMBER
+		echo ${BUILDNUMBER]
                 bat 'ren hello-world.go "env.BUILD_NUMBER"_hello-world.go'
 		bat 'jf rt u "env.BUILD_NUMBER"_hello-world.go "vinod/"'
         }
