@@ -53,6 +53,9 @@ node('10.134.135.130') {
 	    echo 'Build Number...' + env.BUILD_NUMBER 
             // Build steps
         }
+	stage('Build Another Job') {
+		build job: 'vinod', wait: false
+	}
         stage('Initialize golang') {
 		echo 'came here'
                 bat 'go mod init golang'
