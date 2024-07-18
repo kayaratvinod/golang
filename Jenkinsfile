@@ -77,7 +77,8 @@ node('10.134.135.130') {
                 bat 'go build -o hello-world'
         }
         stage('Package') {
-                bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
+		echo BUILDNUMBER
+                bat 'ren hello-world.go "$BUILDNUMBER"_hello-world.go'
 		bat 'jf rt u $BUILDNUMBER"_hello-world.go" "vinod/"'
         }
 	}
