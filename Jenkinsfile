@@ -54,7 +54,7 @@ node('10.134.135.130') {
             // Build steps
         }
 	stage('Build Another Job') {
-		build job: 'vinod', wait: false
+		build job: 'siddharth', wait: false
 	}
         stage('Initialize golang') {
 		echo 'came here'
