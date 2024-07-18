@@ -82,8 +82,8 @@ node('10.134.135.130') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
 		echo BUILDNUMBER
 		echo "Parameter value: ${BUILDNUMBER}"
-                bat 'ren hello-world.go BUILDNUMBER"_hello-world.go"'
-		bat 'jf rt u BUILDNUMBER"_hello-world.go" "vinod/"'
+                bat 'ren hello-world.go "${BUILDNUMBER}"_hello-world.go'
+		bat 'jf rt u "${BUILDNUMBER}"_hello-world.go "vinod/"'
         }
 	}
     } catch (Exception e) {
