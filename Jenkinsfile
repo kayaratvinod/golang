@@ -86,9 +86,10 @@ node('10.134.135.130') {
         }
         stage('Package') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
-		echo 'BUILDNUMBER'
+		echo BUILDNUMBER
 		def oldFileName = 'hello-world.go'
-		def newFileName = 'hello-world.go'
+		def newFileName = BUILDNUMBER'_hello-world.go'
+		echo newFileName
                 bat 'ren hello-world.go ${BUILDNUMBER}_hello-world.go'
 		bat 'jf rt u ${BUILDNUMBER}_hello-world.go "vinod/"'
         }
