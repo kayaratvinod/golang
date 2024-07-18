@@ -88,7 +88,7 @@ node('10.134.135.130') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
 		echo BUILDNUMBER
 		def oldFileName = 'hello-world.go'
-		def newFileName = ${env.BUILD_NUMBER}"_hello-world.go"
+		def newFileName = env.BUILD_NUMBER
 		echo newFileName
                 bat 'ren hello-world.go ${BUILDNUMBER}_hello-world.go'
 		bat 'jf rt u ${BUILDNUMBER}_hello-world.go "vinod/"'
