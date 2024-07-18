@@ -53,6 +53,7 @@ node('10.134.135.130') {
 	    echo 'Pulling...' + env.CHANGE_TARGET 
 	    echo 'Build Number...' + env.BUILD_NUMBER 
 	    def BUILDNUMBER = env.BUILD_NUMBER 
+	    echo BUILDNUMBER
             // Build steps
         }
 //	stage('Build Another Job') {
