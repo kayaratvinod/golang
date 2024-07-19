@@ -77,7 +77,7 @@ node('10.134.135.130') {
         }
 	stage('Build') {
         //      bat 'go build -o hello-world'
-		bat 'go build -ldflags="-s -w -X 'main.Version=v1.0.0'" hello-world.go'
+		bat 'go build -ldflags="-X 'main.Version=v1.0.0' -s -w" hello-world.go'
         }
         stage('Run Batch Command') {
         // Reference the parameter inside a batch command
