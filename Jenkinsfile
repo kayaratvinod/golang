@@ -76,7 +76,8 @@ node('10.134.135.130') {
                 bat 'golint  ./...'
         }
 	stage('Build') {
-                bat 'go build -o hello-world'
+        //      bat 'go build -o hello-world'
+		bat 'go build -ldflags="-s -w" hello-world.go'
         }
         stage('Run Batch Command') {
         // Reference the parameter inside a batch command
