@@ -63,6 +63,23 @@ node('10.134.135.130') {
 		echo 'came here'
                 bat 'go mod init golang'
         }
+	stage('Powershell') {
+	        script {
+                    // Define a PowerShell script
+                    def scriptContent = '''
+                    param (
+                        [string]$Name = "Jenkins"
+                    )
+                    Write-Output "Hello, $Name! Running PowerShell from Jenkins."
+                    '''
+
+                    // Write the PowerShell script to a file
+                    writeFile file: 'script.ps1', text: scriptContent
+
+                    // Run the PowerShell script
+                    bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File script.ps1 -Name "World"'
+                }
+	} 
         stage('Code Analysis') {
                 bat 'go vet ./...'
         }
