@@ -69,6 +69,7 @@ node('10.134.135.130') {
                     def scriptContent = '''
                     param (
                         [string]$Name = "Jenkins"
+                        [string]$Build = env.BUILD_NUMBER 
                     )
                     Write-Output "Hello, $Name! Running PowerShell from Jenkins."
                     '''
