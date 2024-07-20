@@ -64,11 +64,13 @@ node('10.134.135.130') {
                 bat 'go mod init golang'
         }
 	stage('Powershell') {
-	        script {
+                script {
                     // Define a PowerShell script
                     def scriptContent = '''
-		    def language = env.BUILD_NUMBER
-                    Write-Output "Hello, $Name! Running PowerShell from Jenkins.${language}"
+                    param (
+                        [string]$Name = "Jenkins"
+                    )
+                    Write-Output "Hello, $Name! Running PowerShell from Jenkins."
                     '''
 
                     // Write the PowerShell script to a file
