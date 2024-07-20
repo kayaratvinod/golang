@@ -69,7 +69,7 @@ node('10.134.135.130') {
                 param (
                     [string]$Name = "Jenkins"
                 )
-                Write-Output "Hello, $Name! Running PowerShell from Jenkins. $build"
+                Write-Output "Hello, $Name! Running PowerShell from Jenkins. ${build}"
                 '''
 
                 // Write the PowerShell script to a file
