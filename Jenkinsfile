@@ -67,10 +67,11 @@ node('10.134.135.130') {
 	        script {
                     // Define a PowerShell script
                     def scriptContent = '''
+		    def language = env.BUILD_NUMBER
                     param (
                         [string]$Name = "Jenkins"
                     )
-                    Write-Output "Hello, $Name! Running PowerShell from Jenkins."
+                    Write-Output "Hello, $Name! Running PowerShell from Jenkins.${language}"
                     '''
 
                     // Write the PowerShell script to a file
