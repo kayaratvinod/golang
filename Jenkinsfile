@@ -64,6 +64,7 @@ node('10.134.135.130') {
 	stage('Powershell') {
             script {
                 // Define a PowerShell script
+		def build = env.BUILD_NUMBER
                 def scriptContent = '''
                 param (
                     [string]$Name = "Jenkins"
