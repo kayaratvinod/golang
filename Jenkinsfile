@@ -4,7 +4,9 @@ node('10.134.135.130') {
     def goPATH = 'C:\\Users\\Administrator\\go' 
     def goWorkspace = "${env.WORKSPACE}\\go"
     def autoCancelled = false
-
+    parameters {
+        string(name: 'NAME', defaultValue: 'World', description: 'Name to greet')
+    }
     try {
 	    env.PATH = "${goROOT}\\bin;${goPATH}\\bin;${env.PATH}"
             env.GO1225MODULE = 'on'
