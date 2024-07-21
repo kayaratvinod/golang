@@ -95,6 +95,9 @@ node('10.134.135.130') {
         stage('Linting') {
                 bat 'golint  ./...'
         }
+        stage('Testing') {
+                bat 'go test ./...'
+        }
 	stage('Build') {
         //      bat 'go build -o math'
 		bat 'go build -ldflags="-X main.Version=v1.0.0 -s -w" math.go'
