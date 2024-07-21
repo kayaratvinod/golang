@@ -112,7 +112,7 @@ node('10.134.135.130') {
 		def newFileName = env.BUILD_NUMBER
 		bat 'echo %BUILD_TAG%'
                 bat 'ren math.go %BUILD_TAG%_math.go'
-		bat 'jf rt u ${BUILDNUMBER}_math.go "vinod/"'
+		bat 'jf rt u %BUILD_TAG%_math.go "vinod/"'
         }
 	}
     } catch (Exception e) {
