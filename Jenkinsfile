@@ -96,8 +96,7 @@ node('10.134.135.130') {
                 bat 'golint  ./...'
         }
 	stage('Build') {
-        //      bat 'go build -o hello-world'
-		bat 'go build -ldflags="-X main.Version=v1.0.0 -s -w" hello-world.go'
+        //      bat 'go build -o math'
 		bat 'go build -ldflags="-X main.Version=v1.0.0 -s -w" math.go'
         }
         stage('Run Batch Command') {
@@ -109,11 +108,11 @@ node('10.134.135.130') {
         stage('Package') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
 		echo BUILDNUMBER
-		def oldFileName = 'hello-world.go'
+		def oldFileName = 'math.go'
 		def newFileName = env.BUILD_NUMBER
 		bat 'echo %BUILD_TAG%'
-                bat 'ren hello-world.go %BUILD_TAG%_hello-world.go'
-//		bat 'jf rt u ${BUILDNUMBER}_hello-world.go "vinod/"'
+                bat 'ren math.go %BUILD_TAG%_math.go'
+//		bat 'jf rt u ${BUILDNUMBER}_math.go "vinod/"'
         }
 	}
     } catch (Exception e) {
