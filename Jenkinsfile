@@ -95,6 +95,9 @@ node('10.134.135.130') {
         stage('Linting') {
                 bat 'golint  ./...'
         }
+	stage('Coverage') {
+		bat 'go test -coverprofile=coverage.out'
+	}
         stage('Testing') {
                 bat 'go test -v ./...'
         }
