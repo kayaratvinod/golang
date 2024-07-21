@@ -105,12 +105,6 @@ node('10.134.135.130') {
         //      bat 'go build -o math'
 		bat 'go build -ldflags="-X main.Version=v1.0.0 -s -w" math.go'
         }
-        stage('Run Batch Command') {
-        // Reference the parameter inside a batch command
-                bat """
-        	echo Parameter value: ${params.MY_PARAM}
-        	"""
-        }
         stage('Package') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
 		echo BUILDNUMBER
@@ -118,7 +112,7 @@ node('10.134.135.130') {
 		def newFileName = env.BUILD_NUMBER
 		bat 'echo %BUILD_TAG%'
                 bat 'ren math.go %BUILD_TAG%_math.go'
-//		bat 'jf rt u ${BUILDNUMBER}_math.go "vinod/"'
+		bat 'jf rt u ${BUILDNUMBER}_math.go "vinod/"'
         }
 	}
     } catch (Exception e) {
