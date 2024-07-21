@@ -96,7 +96,7 @@ node('10.134.135.130') {
                 bat 'golint  ./...'
         }
         stage('Testing') {
-                bat 'go test ./...'
+                bat 'go test -v ./...'
         }
 	stage('Build') {
         //      bat 'go build -o math'
