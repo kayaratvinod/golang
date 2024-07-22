@@ -83,33 +83,33 @@ node('10.134.135.130') {
 		echo 'came here'
                 bat 'go mod init golang'
         }
-        stage('Code Analysis') {
+        stage('Code Vetting') {
                 bat 'go vet ./...'
         }
         stage('Install Dependencies') {
                 bat 'go mod tidy'
         }
-        stage('FMT Stage') {
+        stage('Go code formatting FMT Stage') {
                 bat 'go fmt ./...'
         }
-        stage('Linting') {
+        stage('Go Linting') {
                 bat 'golint  ./...'
         }
-        stage('StaticCheck') {
+        stage('Go StaticCheck') {
                 bat 'go install honnef.co/go/tools/cmd/staticcheck@latest'
 		bat 'staticcheck ./...'
         }
-	stage('Coverage') {
+	stage('Go Code Coverage') {
 		bat 'go test -coverprofile=coverage.out'
 	}
-        stage('Testing') {
+        stage('Go Testing') {
                 bat 'go test -v ./...'
         }
-	stage('Build') {
+	stage('Go Build') {
         //      bat 'go build -o math'
 		bat 'go build -ldflags="-X main.Version=v1.0.0 -s -w" math.go'
         }
-        stage('Package') {
+        stage('Go Package') {
 	        def BUILDNUMBER = env.BUILD_NUMBER 
 		echo BUILDNUMBER
 		def oldFileName = 'math.go'
