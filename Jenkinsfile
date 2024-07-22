@@ -95,6 +95,10 @@ node('10.134.135.130') {
         stage('Linting') {
                 bat 'golint  ./...'
         }
+        stage('StaticCheck') {
+                bat 'go install honnef.co/go/tools/cmd/staticcheck@latest'
+		bat 'staticcheck ./...'
+        }
 	stage('Coverage') {
 		bat 'go test -coverprofile=coverage.out'
 	}
