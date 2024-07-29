@@ -3,8 +3,9 @@ node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def newGoInstallDir = "c:\\myfolder" // Change this to your desired installation path
+//    def newGoInstallDir = "c:\\myfolder" // Change this to your desired installation path
     def goPath = "${env.WORKSPACE}\\go"
+    def newGoInstallDir = "${env.WORKSPACE}\\gofolder"
 
     try {
         stage('Clean Up Existing Go Installation') {
