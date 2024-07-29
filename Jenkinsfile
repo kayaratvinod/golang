@@ -35,6 +35,7 @@ node('10.134.137.117') {
                 setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
                 go version
             """
+	    cleanWs()
         }
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
