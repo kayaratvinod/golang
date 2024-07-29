@@ -29,8 +29,21 @@ node('10.134.137.117') {
             bat """
                 ${goInstallDir}\\bin\\go version
             """
-	    cleanWs()
         }
+        stage('Build') {
+	    echo 'Pulling...' + env.BRANCH_NAME
+	    checkout scmGit(branches: [[name: "*/${env.BRANCH_NAME}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
+        }
+        stage('Code Vetting') {
+                bat '${goInstallDir}\\bin\\go vet ./...'
+        }
+        stage('Go code formatting FMT Stage') {
+                bat '${goInstallDir}\\bin\\go fmt ./...'
+        }
+	stage('cleanup') {
+		cleanWs()		
+	}
+
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
         echo "An error occurred: ${e.message}"
