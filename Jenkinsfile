@@ -40,16 +40,6 @@ node('10.134.137.117') {
             // Add Go to PATH
             bat '''
                 setx PATH "%PATH%;C:\\Go\\bin"
-            '''
-            
-            // Verify Go installation
-            bat '''
-                @echo off
-                setlocal
-                set "PATH=%PATH%;C:\\Go\\bin"
-                go version
-                endlocal
-            '''
         }
         
         stage('Set Up Go Environment') {
