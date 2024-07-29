@@ -13,6 +13,7 @@ node('10.134.137.117') {
             bat """
                 IF EXIST "${goInstallDir}" (
                     rmdir /S /Q ${goInstallDir}
+		    echo ${goInstallDir}
                 )
             """
             
