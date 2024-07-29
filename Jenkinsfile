@@ -40,14 +40,14 @@ node('10.134.137.117') {
             
             // Add Go to PATH
             bat '''
-                setx PATH "%PATH%;C:\\Go\\bin"
+                setx PATH "%PATH%;C:\\Go\\bin;${goInstallDir}"
             '''
             
             // Verify Go installation
             bat '''
                 @echo off
                 setlocal
-                set "PATH=%PATH%;C:\\Go\\bin"
+                set "PATH=%PATH%;C:\\Go\\bin;${goInstallDir}"
                 go version
                 endlocal
             '''
