@@ -29,7 +29,7 @@ node('10.134.137.117') {
             bat "curl -o ${goInstaller} ${goInstallerUrl}"
             
             // Run the Go installer with custom installation path
-            bat "msiexec /i ${goInstaller} /qn INSTALLDIR=${newGoInstallDir}"
+            bat "msiexec /i ${goInstaller} /qn TARGETDIR=${newGoInstallDir}"
             
             // Clean up installer file
             bat "del ${goInstaller}"
