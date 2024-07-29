@@ -19,20 +19,14 @@ node('10.134.137.117') {
             // Clean up
             bat "del ${goInstaller}"
             
-            // Add Go to PATH
-  //          bat '''
-   //             setx PATH "%PATH%;${goInstallDir}\\bin"
-    //        '''
         }
         stage('Set Up Go Environment') {
             // Create Go workspace
-            bat "mkdir ${goPath}"
-            bat "mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
+//            bat "mkdir ${goPath}"
+ //           bat "mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
             
             // Set Go environment variables
             bat """
-     //           setx GOPATH ${goPath}
-      //          setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
                 ${goInstallDir}\\bin\\go version
             """
 	    cleanWs()
