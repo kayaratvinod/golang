@@ -52,17 +52,6 @@ node('10.134.137.117') {
             '''
         }
         
-        stage('Run Go Code') {
-            // Example: Print Go version to ensure everything is set up correctly
-            bat '''
-                @echo off
-                setlocal
-                set "PATH=%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
-                go version
-                endlocal
-            '''
-            
-        }
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
         echo "An error occurred: ${e.message}"
