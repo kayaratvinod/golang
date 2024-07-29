@@ -63,5 +63,6 @@ node('10.134.137.117') {
     finally {
         // Cleanup steps
         cleanWs() // Clean up the workspace
+    }
 
 }
