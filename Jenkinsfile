@@ -1,4 +1,4 @@
-node('10.134.135.130') {
+node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goROOT = 'C:\\Go1225'
     def goPATH = 'C:\\Users\\Administrator\\go' 
