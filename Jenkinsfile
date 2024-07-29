@@ -60,4 +60,8 @@ node('10.134.137.117') {
         echo "An error occurred: ${e.message}"
         currentBuild.result = 'FAILURE'
     }
+    finally {
+        // Cleanup steps
+        cleanWs() // Clean up the workspace
+
 }
