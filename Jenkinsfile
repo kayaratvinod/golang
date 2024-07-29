@@ -18,12 +18,6 @@ node('10.134.137.117') {
                 )
             """
             
-            // Clean Go environment variables
-            bat """
-                reg delete "HKCU\\Environment" /v GOPATH /f
-                reg delete "HKCU\\Environment" /v Path /f
-            """
-            
             // Reset PATH to default
             bat """
                 set "PATH=%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem;%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\"
