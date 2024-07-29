@@ -48,6 +48,7 @@ node('10.134.137.117') {
                 setlocal
                 set "PATH=%PATH%;C:\\Go\\bin"
                 go version
+		go fmt ./...
                 endlocal
             '''
         }
