@@ -3,7 +3,7 @@ node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def goInstallDir = "C:\\Go"
+    def goInstallDir = "${env.WORKSPACE}\\go" 
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
@@ -39,39 +39,19 @@ node('10.134.137.117') {
             
             // Add Go to PATH
             bat '''
-                setx PATH "%PATH%;C:\\Go\\bin"
+                setx PATH "%PATH%;${env.WORKSPACE}\\go\\bin"
             '''
             
             // Verify Go installation
             bat '''
                 @echo off
                 setlocal
-                set "PATH=%PATH%;C:\\Go\\bin"
+                set "PATH=%PATH%;${env.WORKSPACE}\\go\\bin"
                 go version
                 endlocal
             '''
         }
-        
-        stage('Set Up Go Environment') {
-            // Create Go workspace
-            // bat "mkdir ${goPath} mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
-            
-            // Set Go environment variables
-            bat """
-                setx GOPATH ${goPath}
-                setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
-            """
-            
-            // Verify Go environment
-            bat '''
-                @echo off
-                setlocal
-                set "PATH=%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
-                go version
-                endlocal
-            '''
-        }
-        
+
         stage('Run Go Code') {
             // Example: Print Go version to ensure everything is set up correctly
             bat '''
