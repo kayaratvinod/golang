@@ -8,32 +8,35 @@ node('10.134.137.117') {
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
+        stage('GIT Repo') {
+	    cleanWs()
+	    echo 'Pulling...' + env.BRANCH_NAME
+	    checkout scmGit(branches: [[name: "*/${env.BRANCH_NAME}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
+        }
+
         stage('Install Go') {
-	    cleanWs()		
             // Download Go installer
             bat "curl -o ${goInstaller} ${goInstallerUrl}"
-            
+
             // Run the Go installer
             bat "msiexec /i ${goInstaller} /qn INSTALLDIR=${goInstallDir}"
-            
+
             // Clean up
             bat "del ${goInstaller}"
-            
+
         }
+
         stage('Set Up Go Environment') {
             // Create Go workspace
 //            bat "mkdir ${goPath}"
  //           bat "mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
-            
+
             // Set Go environment variables
             bat """
                 ${goInstallDir}\\bin\\go version
             """
         }
-        stage('Build') {
-	    echo 'Pulling...' + env.BRANCH_NAME
-	    checkout scmGit(branches: [[name: "*/${env.BRANCH_NAME}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'root', url: 'https://github.com/kayaratvinod/golang.git']])
-        }
+
         stage('Code Vetting') {
                 bat '${goInstallDir}\\bin\\go vet ./...'
         }
