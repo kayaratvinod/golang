@@ -36,7 +36,11 @@ node('10.134.137.117') {
                 ${goInstallDir}\\bin\\go version
             """
         }
-
+        stage('Initialize golang') {
+            bat """
+		${goInstallDir}\\bin\\go mod init golang
+            """
+        }
         stage('Code Vetting') {
             bat """
 		${goInstallDir}\\bin\\go vet ./...
