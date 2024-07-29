@@ -90,6 +90,7 @@ node('10.134.137.117') {
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
         echo "An error occurred: ${e.message}"
+	cleanWs()
         currentBuild.result = 'FAILURE'
     }
 }
