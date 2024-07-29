@@ -43,12 +43,12 @@ node('10.134.137.117') {
         }
         stage('Code Vetting') {
             bat """
-		${goInstallDir}\\bin\\go vet ./...
+		${goInstallDir}\\bin\\go vet 
 	    """
         }
         stage('Go code formatting FMT Stage') {
             bat """
-                ${goInstallDir}\\bin\\go fmt ./...
+                ${goInstallDir}\\bin\\go fmt 
 	    """
         }
 	stage('cleanup') {
