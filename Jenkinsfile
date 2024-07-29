@@ -1,6 +1,6 @@
 node('10.134.137.117') {
     // Define variables
-    def goVersion = '1.20.3'
+    def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
     // def goInstallDir = "C:\\myfolder"
@@ -20,9 +20,9 @@ node('10.134.137.117') {
             bat "del ${goInstaller}"
             
             // Add Go to PATH
-            bat '''
-                setx PATH "%PATH%;${goInstallDir}\\bin"
-            '''
+  //          bat '''
+   //             setx PATH "%PATH%;${goInstallDir}\\bin"
+    //        '''
         }
         stage('Set Up Go Environment') {
             // Create Go workspace
@@ -31,9 +31,9 @@ node('10.134.137.117') {
             
             // Set Go environment variables
             bat """
-                setx GOPATH ${goPath}
-                setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
-                go version
+     //           setx GOPATH ${goPath}
+      //          setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
+                ${goInstallDir}\\bin\\go version
             """
 	    cleanWs()
         }
