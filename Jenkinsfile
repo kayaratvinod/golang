@@ -3,19 +3,25 @@ node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def newGoInstallDir = "${env.WORKSPACE}\\godir" // Change this to your desired installation path
+    def newGoInstallDir = "c:\\myfolder" // Change this to your desired installation path
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
         stage('Clean Up Existing Go Installation') {
             // Uninstall existing Go installation if it exists
             bat """
-                IF EXIST "C:\\Go" (
-                    rmdir /S /Q "C:\\Go"
+                IF EXIST "C:\\myfolder" (
+                    rmdir /S /Q "C:\\myfolder"
                 )
                 IF EXIST "${newGoInstallDir}" (
                     rmdir /S /Q "${newGoInstallDir}"
                 )
+            """
+            
+            // Clean Go environment variables
+            bat """
+                reg delete "HKCU\\Environment" /v GOPATH /f
+                reg delete "HKCU\\Environment" /v Path /f
             """
             
             // Reset PATH to default
@@ -24,17 +30,16 @@ node('10.134.137.117') {
             """
         }
         
-        stage('Install Go') {
-            bat """
-                mkdir  "${newGoInstallDir}"
-                mkdir  "${goPath}"
-            """
-
+        stage('Download Go Installer') {
             // Download Go installer
             bat "curl -o ${goInstaller} ${goInstallerUrl}"
-            
-            // Run the Go installer with custom installation path
-            bat "msiexec /i ${goInstaller} /qn TARGETDIR=${newGoInstallDir}"
+        }
+        
+        stage('Install Go') {
+            // Run the Go installer with custom installation path using PowerShell
+            powershell """
+                Start-Process msiexec.exe -ArgumentList '/i ${goInstaller} /qn INSTALLDIR=${newGoInstallDir}' -NoNewWindow -Wait
+            """
             
             // Clean up installer file
             bat "del ${goInstaller}"
@@ -90,7 +95,6 @@ node('10.134.137.117') {
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
         echo "An error occurred: ${e.message}"
-	cleanWs()
         currentBuild.result = 'FAILURE'
     }
 }
