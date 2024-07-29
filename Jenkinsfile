@@ -3,7 +3,7 @@ node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def goInstallDir = "${env.WORKSPACE}\\go" 
+    def goInstallDir = "C:\\Go"
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
@@ -39,19 +39,19 @@ node('10.134.137.117') {
             
             // Add Go to PATH
             bat '''
-                setx PATH "%PATH%;${env.WORKSPACE}\\go\\bin"
+                setx PATH "%PATH%;C:\\Go\\bin"
             '''
             
             // Verify Go installation
             bat '''
                 @echo off
                 setlocal
-                set "PATH=%PATH%;${env.WORKSPACE}\\go\\bin"
+                set "PATH=%PATH%;C:\\Go\\bin"
                 go version
                 endlocal
             '''
         }
-
+        
         stage('Run Go Code') {
             // Example: Print Go version to ensure everything is set up correctly
             bat '''
@@ -62,8 +62,6 @@ node('10.134.137.117') {
                 endlocal
             '''
             
-            // Here you can add commands to run your Go code
-            // bat "go run your_go_file.go"
         }
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
