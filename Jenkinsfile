@@ -51,6 +51,27 @@ node('10.134.137.117') {
                 endlocal
             '''
         }
+
+        stage('Clean Up Existing Go Installation') {
+            // Uninstall existing Go installation if it exists
+            bat """
+                IF EXIST "${goInstallDir}" (
+                    rmdir /S /Q ${goInstallDir}
+                )
+            """
+
+            // Clean Go environment variables
+            bat """
+                reg delete "HKCU\\Environment" /v GOPATH /f
+                reg delete "HKCU\\Environment" /v Path /f
+            """
+
+            // Reset PATH to default
+            bat """
+                set "PATH=%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem;%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\"
+            """
+        }
+
         
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
