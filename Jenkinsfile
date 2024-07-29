@@ -26,8 +26,8 @@ node('10.134.137.117') {
         
         stage('Install Go') {
             bat """
-                mkdir /S /Q "${newGoInstallDir}"
-                mkdir /S /Q "${goPath}"
+                mkdir  "${newGoInstallDir}"
+                mkdir  "${goPath}"
             """
 
             // Download Go installer
