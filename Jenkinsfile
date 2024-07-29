@@ -3,11 +3,13 @@ node('10.134.137.117') {
     def goVersion = '1.20.3'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def goInstallDir = "C:\\myfolder"
+    // def goInstallDir = "C:\\myfolder"
+    def goInstallDir = "${env.WORKSPACE}\\mygofolder"
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
         stage('Install Go') {
+	    cleanWs()		
             // Download Go installer
             bat "curl -o ${goInstaller} ${goInstallerUrl}"
             
@@ -19,9 +21,20 @@ node('10.134.137.117') {
             
             // Add Go to PATH
             bat '''
-                setx PATH "%PATH%;C:\\myfolder\\bin"
-                go version
+                setx PATH "%PATH%;${goInstallDir}\\bin"
             '''
+        }
+        stage('Set Up Go Environment') {
+            // Create Go workspace
+            bat "mkdir ${goPath}"
+            bat "mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
+            
+            // Set Go environment variables
+            bat """
+                setx GOPATH ${goPath}
+                setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
+                go version
+            """
         }
     } catch (Exception e) {
         // Handle any errors that occur during the pipeline execution
