@@ -3,7 +3,8 @@ node('10.134.137.117') {
     def goVersion = '1.22.5'
     def goInstaller = "go${goVersion}.windows-amd64.msi"
     def goInstallerUrl = "https://dl.google.com/go/${goInstaller}"
-    def goInstallDir = "C:\\Go"
+//    def goInstallDir = "C:\\Go"
+    def goInstallDir = "${env.WORKSPACE}\\go"
     def goPath = "${env.WORKSPACE}\\go"
 
     try {
@@ -48,7 +49,6 @@ node('10.134.137.117') {
                 setlocal
                 set "PATH=%PATH%;C:\\Go\\bin"
                 go version
-		go fmt ./...
                 endlocal
             '''
         }
