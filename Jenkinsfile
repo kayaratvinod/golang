@@ -54,13 +54,22 @@ node('10.134.137.117') {
         
         stage('Set Up Go Environment') {
             // Create Go workspace
-            bat "mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
+            bat "mkdir ${goPath} mkdir ${goPath}\\src ${goPath}\\bin ${goPath}\\pkg"
             
             // Set Go environment variables
             bat """
                 setx GOPATH ${goPath}
                 setx PATH "%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
             """
+            
+            // Verify Go environment
+            bat '''
+                @echo off
+                setlocal
+                set "PATH=%PATH%;${goInstallDir}\\bin;${goPath}\\bin"
+                go version
+                endlocal
+            '''
         }
         
         stage('Run Go Code') {
