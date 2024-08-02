@@ -93,7 +93,7 @@ node('10.134.135.130') {
                 bat 'go fmt ./...'
         }
         stage('Go Linting') {
-		bat 'go install honnef.co/go/tools/cmd/staticcheck@latest'
+		bat 'go get -u golang.org/x/lint/golint'
                 bat 'golint  ./...'
         }
         stage('Go StaticCheck') {
