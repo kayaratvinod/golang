@@ -1,4 +1,4 @@
-node('10.134.137.117') {
+node('10.134.135.130') {
     def goVersion = '1.22.5'
     def goROOT = 'C:\\Go1225'
     def goPATH = 'C:\\Users\\Administrator\\go' 
@@ -93,6 +93,7 @@ node('10.134.137.117') {
                 bat 'go fmt ./...'
         }
         stage('Go Linting') {
+		bat 'go install honnef.co/go/tools/cmd/staticcheck@latest'
                 bat 'golint  ./...'
         }
         stage('Go StaticCheck') {
